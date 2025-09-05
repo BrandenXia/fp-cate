@@ -29,6 +29,7 @@ def compose(*funcs):
 
 
 # from https://stackoverflow.com/a/78149460
+# TODO: since it uses inspect, it doesn't work with built-in functions
 def curry(f):
     def inner(*args, **kwds):
         new_f = partial(f, *args, **kwds)
@@ -55,7 +56,7 @@ class State:
 
     def update(self, **kwargs) -> "State":
         new_state = self.__dict__.copy()
-        return State(**new_state, **kwargs)
+        return State(**{**new_state, **kwargs})
 
     def __repr__(self):
         return (
