@@ -2,7 +2,16 @@ from functools import reduce, partial
 from typing import TypeVar
 from inspect import signature, _empty
 
-__all__ = ["identity", "assert_and", "expr", "compose", "curry", "Filter", "State"]
+__all__ = [
+    "identity",
+    "assert_and",
+    "expr",
+    "compose",
+    "curry",
+    "cache",
+    "Filter",
+    "State",
+]
 
 
 def identity(x):
