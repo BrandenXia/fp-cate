@@ -42,6 +42,20 @@ def curry(f):
     return inner
 
 
+def cache(func):
+    _cache = {}
+
+    def wrapper(*args):
+        if args not in _cache:
+            result = func(*args)
+            _cache[args] = result
+            return result
+        else:
+            return _cache[args]
+
+    return wrapper
+
+
 class Filter:
     def __init__(self, func):
         self.func = func
