@@ -9,6 +9,7 @@ __all__ = [
     "compose",
     "curry",
     "cache",
+    "pipe",
     "Filter",
     "State",
 ]
@@ -65,6 +66,10 @@ def cache(func):
     return wrapper
 
 
+def pipe(value, *funcs):
+    return reduce(lambda v, f: f(v), funcs, value)
+
+
 class Filter:
     def __init__(self, func):
         self.func = func
@@ -76,6 +81,9 @@ class Filter:
 class State:
     def __init__(self, **kwargs):
         self.__dict__.update(kwargs)
+
+    def __getitem__(self, key):
+        return self.__dict__[key]
 
     def update(self, **kwargs) -> "State":
         new_state = self.__dict__.copy()
