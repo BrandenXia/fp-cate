@@ -38,8 +38,12 @@ def _get_args_ast(frame_info: inspect.FrameInfo) -> ast.expr | list[ast.expr]:
         range(position.lineno, position.end_lineno + 1),
     )
     lines = list(lines)
-    lines[0] = lines[0][position.col_offset :]
-    lines[-1] = lines[-1][: position.end_col_offset]
+    if len(lines) > 1:
+        lines[0] = lines[0][position.col_offset :]
+        lines[-1] = lines[-1][: position.end_col_offset]
+    else:
+        # if only one line, slice once since col_offset and end_col_offset are relative to the same line
+        lines[0] = lines[0][position.col_offset : position.end_col_offset]
     src = "".join(lines)
 
     # process AST

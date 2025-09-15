@@ -1,6 +1,6 @@
 [project]
 name = "fp-cate"
-version = "0.1.8"
+version = "0.1.9"
 description = "Functional programming tools for Python"
 readme = "README.md"
 authors = [
