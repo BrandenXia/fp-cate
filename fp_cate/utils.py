@@ -70,6 +70,10 @@ def pipe(value, *funcs):
     return reduce(lambda v, f: f(v), funcs, value)
 
 
+def ppipe(*funcs):
+    return lambda value: pipe(value, *funcs)
+
+
 class Filter:
     def __init__(self, func):
         self.func = func

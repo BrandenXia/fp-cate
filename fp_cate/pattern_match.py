@@ -1,9 +1,3 @@
-from collections.abc import Callable, Iterable
-from typing import Any
-
-__all__ = ["case", "default", "matchV", "match", "_any", "_rest"]
-
-
 """
 Example of pattern matching.
 
@@ -44,6 +38,11 @@ pipe(
 ```
 """
 
+from collections.abc import Callable, Iterable
+from typing import Any
+
+__all__ = ["case", "default", "matchV", "match", "_any", "_rest"]
+
 
 # special symbols for pattern matching
 _any = lambda *_: True  # noqa: E731
@@ -64,12 +63,12 @@ def _get_obj_property(obj: Any, key: str) -> Any:
 
 
 class case:
-    def __init__(self, pattern: Any):
+    def __init__(self, pattern: Any, expr: Callable | Any | None = None):
         self._pattern = pattern
-        self.func: Callable | None = None
+        self.expr: Callable = expr if callable(expr) else (lambda *_: expr)
 
-    def __rshift__(self, func: Callable | Any):
-        self.func = func if callable(func) else (lambda *_: func)
+    def __rshift__(self, expr: Callable | Any):
+        self.expr = expr if callable(expr) else (lambda *_: expr)
         return self
 
     def match(self, value: Any) -> tuple | bool:
@@ -135,13 +134,11 @@ default = case(_any)
 def _match(value: Any, cases: Iterable[case]) -> Any:
     for c in cases:
         if (res := c.match(value)) is not False:
-            if c.func is None:
-                raise ValueError("case must be followed by >> and a function")
-            return c.func(*res) if isinstance(res, tuple) else c.func(value)
+            return c.expr(*res) if isinstance(res, tuple) else c.expr(value)
     raise ValueError("no matching case found")
 
 
-def matchV(value: Any) -> Callable[[*tuple[case, ...]], Any]:
+def matchV(value: Any):
     return lambda *args: _match(value, args)
 
 
