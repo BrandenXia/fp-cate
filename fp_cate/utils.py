@@ -1,6 +1,7 @@
-from functools import reduce, partial
-from typing import TypeVar
-from inspect import signature, _empty
+from collections.abc import Callable
+from functools import partial, reduce
+from inspect import _empty, signature
+from typing import TypeVar, overload
 
 __all__ = [
     "identity",
@@ -10,6 +11,7 @@ __all__ = [
     "curry",
     "cache",
     "pipe",
+    "dbg",
     "Filter",
     "State",
 ]
@@ -70,8 +72,23 @@ def pipe(value, *funcs):
     return reduce(lambda v, f: f(v), funcs, value)
 
 
-def ppipe(*funcs):
-    return lambda value: pipe(value, *funcs)
+@overload
+def dbg(value: T, *, formatter: Callable[[T], str]) -> T: ...
+
+
+@overload
+def dbg(msg: str, value: T, *, formatter: Callable[[T], str]) -> T: ...
+
+
+def dbg(msg_or_value, value=None, *, formatter=identity):  # type: ignore
+    if value is None:
+        value = msg_or_value
+        print(f"{formatter(value)}")
+        return value
+    else:
+        msg = msg_or_value
+        print(f"{msg} {formatter(value)}")
+        return value
 
 
 class Filter:

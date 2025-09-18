@@ -6,6 +6,7 @@ from .utils import (
     curry,
     cache,
     pipe,
+    dbg,
     Filter,
     State,
 )
@@ -15,6 +16,7 @@ from .pattern_match import case, default, matchV, match, _any, _rest
 __all__ = [
     # utils
     "identity", "assert_and", "expr", "compose", "curry", "cache", "pipe",
+    "dbg",
     "Filter", "State",
     # pattern_match
     "case", "matchV", "match", "_any", "_rest", "default",
