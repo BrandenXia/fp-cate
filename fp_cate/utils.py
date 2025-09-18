@@ -9,7 +9,6 @@ __all__ = [
     "expr",
     "compose",
     "curry",
-    "cache",
     "pipe",
     "dbg",
     "Filter",
@@ -52,20 +51,6 @@ def curry(f):
             return curry(new_f)
 
     return inner
-
-
-def cache(func):
-    _cache = {}
-
-    def wrapper(*args):
-        if args not in _cache:
-            result = func(*args)
-            _cache[args] = result
-            return result
-        else:
-            return _cache[args]
-
-    return wrapper
 
 
 def pipe(value, *funcs):

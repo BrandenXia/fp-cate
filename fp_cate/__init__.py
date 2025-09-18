@@ -4,7 +4,6 @@ from .utils import (
     expr,
     compose,
     curry,
-    cache,
     pipe,
     dbg,
     Filter,
@@ -15,7 +14,7 @@ from .pattern_match import case, default, matchV, match, _any, _rest
 # fmt: off
 __all__ = [
     # utils
-    "identity", "assert_and", "expr", "compose", "curry", "cache", "pipe",
+    "identity", "assert_and", "expr", "compose", "curry", "pipe",
     "dbg",
     "Filter", "State",
     # pattern_match
