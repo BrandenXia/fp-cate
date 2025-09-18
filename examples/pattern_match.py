@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
-from fp_cate import pipe, match, case, matchV, _any, _rest, default
+from fp_cate import pipe
+from fp_cate.control import match, case, matchV, _any, _rest, default
 
 
 # works with any iterables

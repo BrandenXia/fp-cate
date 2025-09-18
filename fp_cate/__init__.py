@@ -9,7 +9,6 @@ from .utils import (
     Filter,
     State,
 )
-from .pattern_match import case, default, matchV, match, _any, _rest
 
 # fmt: off
 __all__ = [
@@ -17,7 +16,5 @@ __all__ = [
     "identity", "assert_and", "expr", "compose", "curry", "pipe",
     "dbg",
     "Filter", "State",
-    # pattern_match
-    "case", "matchV", "match", "_any", "_rest", "default",
 ]
 # fmt: on
