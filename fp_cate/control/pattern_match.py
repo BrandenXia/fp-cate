@@ -41,7 +41,7 @@ pipe(
 from collections.abc import Callable, Iterable
 from typing import Any
 
-__all__ = ["case", "default", "matchV", "match", "_any", "_rest"]
+__all__ = ["case", "default", "matchV", "match", "switch", "_any", "_rest"]
 
 
 # special symbols for pattern matching
@@ -140,6 +140,12 @@ def _match(value: Any, cases: Iterable[case]) -> Any:
 
 def matchV(value: Any):
     return lambda *args: _match(value, args)
+
+
+switch = matchV(...)
+"""
+Simplified version of matchV for switch-case style usage.
+"""
 
 
 def match(*cases: case) -> Callable[[Any], Any]:
