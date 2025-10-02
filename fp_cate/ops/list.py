@@ -10,7 +10,7 @@ __all__ = ["insert", "remove", "append", "extend", "swap"]
 T = TypeVar("T")
 
 
-_inplace_list = lambda arr, inplace=False: arr if inplace else arr[:]  # noqa: E731
+_inplace_list = lambda arr, inplace: arr if inplace else arr[:]  # noqa: E731
 
 
 def insert(arr: list[T], index: int, value: T, inplace=False) -> list[T]:
