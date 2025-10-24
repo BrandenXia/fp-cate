@@ -7,7 +7,9 @@ authors = [
     { name = "BrandenXia", email = "xxtbranden@outlook.com" }
 ]
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+    "typing-extensions>=4.15.0",
+]
 
 [build-system]
 requires = ["uv_build>=0.8.14,<0.9.0"]

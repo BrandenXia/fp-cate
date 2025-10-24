@@ -6,6 +6,7 @@ from .utils import (
     curry,
     pipe,
     dbg,
+    flip,
     Filter,
     State,
 )
@@ -14,7 +15,7 @@ from .utils import (
 __all__ = [
     # utils
     "identity", "assert_and", "expr", "compose", "curry", "pipe",
-    "dbg",
+    "dbg", "flip",
     "Filter", "State",
 ]
 # fmt: on

@@ -11,6 +11,7 @@ __all__ = [
     "curry",
     "pipe",
     "dbg",
+    "flip",
     "Filter",
     "State",
 ]
@@ -74,6 +75,14 @@ def dbg(msg_or_value, value=None, *, formatter=identity):  # type: ignore
         msg = msg_or_value
         print(f"{msg} {formatter(value)}")
         return value
+
+
+U = TypeVar("U")
+V = TypeVar("V")
+
+
+def flip(f: Callable[[U, V], T]) -> Callable[[V, U], T]:
+    return lambda x, y: f(y, x)
 
 
 class Filter:
