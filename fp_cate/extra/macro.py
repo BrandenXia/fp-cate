@@ -6,8 +6,8 @@ import enum
 from collections.abc import Callable
 from typing import TypeVar, cast
 
-from ..utils import pipe
-from ..pattern_match import match, matchV, case, default
+from fp_cate.utils import pipe
+from fp_cate.control.pattern_match import match, matchV, case, default
 
 
 __all__ = ["MacroLevel", "macro"]
