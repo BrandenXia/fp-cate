@@ -19,6 +19,12 @@ def insert(arr: list[T], index: int, value: T, inplace=False) -> list[T]:
     return arr
 
 
+def update(arr: list[T], index: int, value: T, inplace=False) -> list[T]:
+    arr = _inplace_list(arr, inplace)
+    arr[index] = value
+    return arr
+
+
 def remove(arr: list[T], index: int, inplace=False) -> list[T]:
     """Remove the element at the specified index from the list."""
     arr = _inplace_list(arr, inplace)
